@@ -1,0 +1,25 @@
+{
+    "name": "mp3-puzzle"
+  , "version": "0.1.0"
+  , "description": "A proof of concept for MP3 streaming."
+  , "contributors": [
+    {
+      "name": "kmcastor",
+      "email": "kcas88@gmail.com"
+    }
+	]
+  ,
+  "license": "UNLICENSED"
+  , "repository": {
+      "type": "git"
+    , "url": ""
+  }
+  , "dependencies": {
+      "express": "4.13.x",
+	  "socket.io": "1.4.x"
+  }
+  , "engines": {
+      "node": "5.5.x"
+    , "npm": "3.3.x"
+  }
+}
