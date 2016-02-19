@@ -24,8 +24,12 @@ function parseMP3(data) {
 		// Find a byte that's FF, the first 8 bits of the 11 set to show the start of a frame
 		if(data[i] == 0xFF) {
 			// See if the next byte is 111XXXXX, ie if the next byte is >= 0xE0
-			if(i < data.length && data[i+1] >= 0xE0) {
-				var headerBytes = data[i] + data[i+1] + data[i+2] + data[i+3];
+			if(i < data.length - 1 && data[i+1] >= 0xE0) {
+				var headerBytes = [];
+				headerBytes.push(data[i]);
+				headerBytes.push(data[i+1]);
+				headerBytes.push(data[i+2]);
+				headerBytes.push(data[i+3]);
 				getHeader(headerBytes);
 			}
 		}
@@ -35,6 +39,17 @@ function parseMP3(data) {
 // Get the header
 function getHeader(headerBytes) {
 	console.log('Getting header');
-	//console.log(headerBytes.toString(16));
 	// Do bitshifting and extract the header information for the given frame
+	
+	// Array of 32 bits
+	var headerBits = [];
+	for(var i = 0; i < headerBytes.length; i++) {
+		console.log("headerByte" + headerBytes[i]);
+		for (var j = 7; j >= 0; j--) {
+			var bit = headerBytes[i] & (1 << j) ? 1 : 0;
+			headerBits.push(bit);
+			console.log(bit);
+		}
+	}
+
 }
